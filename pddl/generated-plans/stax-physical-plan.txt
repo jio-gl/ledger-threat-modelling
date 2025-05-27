@@ -1,0 +1,134 @@
+=== PDDL PLANNER OUTPUT ===
+Device: stax
+Attack Type: physical
+Planner: downward
+==================================================
+
+STDOUT:
+INFO     planner time limit: None
+INFO     planner memory limit: None
+
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: None
+INFO     translator memory limit: None
+INFO     translator command line string: /Users/joseignacio/Documents/GitHub/ledger-threat-modelling/venv/bin/python3 /Users/joseignacio/Documents/GitHub/ledger-threat-modelling/tools/planners/downward/builds/release/bin/translate/translate.py pddl/domains/ledger-comprehensive.pddl pddl/problems/ledger-stax-comprehensive.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.000s CPU, 0.004s wall-clock]
+Normalizing task... [0.010s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.002s wall-clock]
+Preparing model... [0.000s CPU, 0.002s wall-clock]
+Generated 222 rules.
+Computing model... [0.000s CPU, 0.001s wall-clock]
+228 relevant atoms
+136 auxiliary atoms
+364 final queue length
+412 total queue pushes
+Completing instantiation... [0.000s CPU, 0.001s wall-clock]
+Instantiating: [0.000s CPU, 0.006s wall-clock]
+Computing fact groups...
+Finding invariants...
+81 initial candidates
+Finding invariants: [0.000s CPU, 0.002s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+53 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.000s wall-clock]
+Computing fact groups: [0.000s CPU, 0.003s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Translator axioms removed by simplifying: 0
+Processing axioms: [0.000s CPU, 0.000s wall-clock]
+Translating task: [0.000s CPU, 0.001s wall-clock]
+13 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+4 operators removed
+0 axioms removed
+10 propositions removed
+Detecting unreachable propositions: [0.010s CPU, 0.001s wall-clock]
+Reordering and filtering variables...
+28 of 48 variables necessary.
+0 of 0 mutex groups necessary.
+32 of 42 operators necessary.
+14 of 14 axiom rules necessary.
+Reordering and filtering variables: [0.000s CPU, 0.000s wall-clock]
+Translator variables: 28
+Translator derived variables: 1
+Translator facts: 56
+Translator goal facts: 1
+Translator mutex groups: 0
+Translator total mutex groups size: 0
+Translator operators: 32
+Translator axioms: 14
+Translator task size: 253
+warning: could not determine peak memory
+Writing output... [0.000s CPU, 0.000s wall-clock]
+Done! [0.020s CPU, 0.016s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: None
+INFO     search memory limit: None
+INFO     search command line string: /Users/joseignacio/Documents/GitHub/ledger-threat-modelling/tools/planners/downward/builds/release/bin/downward --search 'astar(ff())' --internal-plan-file sas_plan < output.sas
+[t=0.000211s, 410073120 KB] reading input...
+[t=0.000827s, 410073120 KB] done reading input!
+[t=0.001646s, 410073120 KB] Simplifying 60 unary operators... done! [56 unary operators]
+[t=0.001691s, 410073120 KB] time to simplify: 0.000047s
+[t=0.001704s, 410073120 KB] Initializing additive heuristic...
+[t=0.001707s, 410073120 KB] Initializing FF heuristic...
+[t=0.001720s, 410073120 KB] Building successor generator...done!
+[t=0.001744s, 410073120 KB] peak memory difference for successor generator creation: 0 KB
+[t=0.001746s, 410073120 KB] time for successor generation creation: 0.000019s
+[t=0.001749s, 410073120 KB] Variables: 28
+[t=0.001756s, 410073120 KB] FactPairs: 56
+[t=0.001759s, 410073120 KB] Bytes per state: 4
+[t=0.001771s, 410073120 KB] Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+[t=0.001784s, 410073120 KB] New best heuristic value for ff: 1
+[t=0.001788s, 410073120 KB] g=0, 1 evaluated, 0 expanded
+[t=0.001790s, 410073120 KB] f = 1, 1 evaluated, 0 expanded
+[t=0.001795s, 410073120 KB] Initial heuristic value for ff: 1
+[t=0.001798s, 410073120 KB] pruning method: none
+[t=0.001811s, 410073120 KB] New best heuristic value for ff: 0
+[t=0.001814s, 410073120 KB] g=1, 3 evaluated, 1 expanded
+[t=0.001835s, 410073120 KB] Solution found!
+[t=0.001838s, 410073120 KB] Actual search time: 0.000039s
+mitm-firmware-update eve stax internet-channel (1)
+[t=0.001840s, 410073120 KB] Plan length: 1 step(s).
+[t=0.001840s, 410073120 KB] Plan cost: 1
+[t=0.001840s, 410073120 KB] Expanded 2 state(s).
+[t=0.001840s, 410073120 KB] Reopened 0 state(s).
+[t=0.001840s, 410073120 KB] Evaluated 11 state(s).
+[t=0.001840s, 410073120 KB] Evaluations: 11
+[t=0.001840s, 410073120 KB] Generated 11 state(s).
+[t=0.001840s, 410073120 KB] Dead ends: 0 state(s).
+[t=0.001840s, 410073120 KB] Expanded until last jump: 0 state(s).
+[t=0.001840s, 410073120 KB] Reopened until last jump: 0 state(s).
+[t=0.001840s, 410073120 KB] Evaluated until last jump: 1 state(s).
+[t=0.001840s, 410073120 KB] Generated until last jump: 0 state(s).
+[t=0.001840s, 410073120 KB] Number of registered states: 11
+[t=0.001840s, 410073120 KB] Int hash set load factor: 11/16 = 0.687500
+[t=0.001840s, 410073120 KB] Int hash set resizes: 4
+[t=0.001840s, 410073120 KB] Search time: 0.000069s
+[t=0.001840s, 410073120 KB] Total time: 0.001840s
+Solution found.
+Peak memory: 410073120 KB
+Remove intermediate file output.sas
+search exit code: 0
+
+INFO     Planner time: 0.06s
+
+
+STDERR:
