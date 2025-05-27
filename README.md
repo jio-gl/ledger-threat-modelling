@@ -1,13 +1,13 @@
 # Ledger Hardware Wallet Threat Modelling
 
-A comprehensive threat modelling framework for Ledger hardware wallets using formal methods (Alloy) and automated planning (PDDL).
+A comprehensive threat modelling framework for Ledger hardware wallets using automated planning (PDDL) and formal methods (Alloy).
 
 ## 🎯 Overview
 
 This project provides formal security models and threat analysis for Ledger hardware wallets, including:
 
-- **Formal Security Models** (Alloy): Mathematical specifications of device architecture and security properties
-- **Attack Planning Models** (PDDL): Automated discovery of attack paths and vulnerabilities
+- **Attack Planning Models** (PDDL): Automated discovery of attack paths and vulnerabilities ✅ **Working**
+- **Formal Security Models** (Alloy): Mathematical specifications of device architecture and security properties ⚠️ **Work in Progress**
 - **Comprehensive Attack Scenarios**: Physical, software, supply chain, and wireless attacks
 - **Security Property Verification**: Automated checking of key confidentiality, display integrity, and device genuineness
 
@@ -15,14 +15,14 @@ This project provides formal security models and threat analysis for Ledger hard
 
 ```
 ledger-threat-modelling/
-├── alloy/                          # Alloy formal models
-│   ├── models/                     # Core security property models
-│   ├── instances/                  # Concrete attack scenarios
-│   └── analysis/                   # Analysis and verification files
-├── pddl/                           # PDDL planning models
+├── pddl/                           # PDDL planning models (WORKING)
 │   ├── domains/                    # Attack domain definitions
 │   ├── problems/                   # Specific attack scenarios
 │   └── plans/                      # Generated attack plans
+├── alloy/                          # Alloy formal models (WIP)
+│   ├── models/                     # Core security property models
+│   ├── instances/                  # Concrete attack scenarios
+│   └── analysis/                   # Analysis and verification files
 ├── docs/                           # Documentation
 ├── examples/                       # Example analyses and results
 ├── tools/                          # Tool installation scripts
@@ -75,7 +75,29 @@ ledger-threat-modelling/
 
 ## 🔍 Usage
 
-### Alloy Security Models
+### PDDL Attack Planning ✅
+
+1. **Run attack planning:**
+   ```bash
+   # Using Fast Downward planner
+   python3 tools/planners/downward/fast-downward.py \
+     pddl/domains/ledger-comprehensive.pddl \
+     pddl/problems/ledger-nano-s.pddl \
+     --search "astar(lmcut())"
+   ```
+
+2. **Analyze generated plans:**
+   ```bash
+   # Plans are saved in the current directory as sas_plan
+   cat sas_plan
+   ```
+
+3. **Available attack scenarios:**
+   - `pddl/problems/ledger-nano-s.pddl` - Nano S physical attacks
+   - `pddl/problems/ledger-nano-x.pddl` - Nano X wireless + physical attacks  
+   - `pddl/problems/ledger-stax-comprehensive.pddl` - Stax multi-vector attacks
+
+### Alloy Security Models ⚠️ (Work in Progress)
 
 1. **Open Alloy Analyzer:**
    ```bash
@@ -97,22 +119,7 @@ ledger-threat-modelling/
    run SupplyChainAttack for 4 but 1 Device, 1 Attacker
    ```
 
-### PDDL Attack Planning
-
-1. **Run attack planning:**
-   ```bash
-   # Using Fast Downward planner
-   python3 tools/planners/downward/fast-downward.py \
-     pddl/domains/ledger-comprehensive.pddl \
-     pddl/problems/nano-s-physical-attack.pddl \
-     --search "astar(lmcut())"
-   ```
-
-2. **Analyze generated plans:**
-   ```bash
-   # Plans are saved in the current directory as sas_plan
-   cat sas_plan
-   ```
+   **Note**: The Alloy models are currently under development. Some assertions may not find counterexamples as expected.
 
 ## 📊 Security Models
 
@@ -154,18 +161,24 @@ ledger-threat-modelling/
 
 ## 🔬 Analysis Results
 
-### Key Findings
+### PDDL Planning Results ✅
 
-1. **SE Compromise**: Direct compromise of the Secure Element leads to complete key extraction
-2. **Supply Chain Vulnerabilities**: Pre-compromised devices bypass all software protections
-3. **Physical Access Risks**: High-skill attackers with tools can compromise any device
-4. **Display Trust**: MCU-driven displays (Nano S) are more vulnerable than SE-driven displays
+1. **Working Attack Paths**: PDDL successfully generates attack sequences for:
+   - Physical access → PIN bypass → seed extraction
+   - Supply chain compromise → pre-compromised device
+   - Wireless proximity → BLE MITM → communication eavesdropping
+   - Multi-vector attacks combining physical, software, and social engineering
 
-### Attack Path Examples
+2. **Verified Attack Scenarios**: All device types (Nano S, Nano X, Stax) have validated attack paths
 
-1. **Minimal Key Compromise**: SE fault injection → seed extraction
-2. **Supply Chain Attack**: Pre-compromised device → immediate key access
-3. **Combined Attack**: Physical access + firmware compromise + PIN bypass → full compromise
+### Alloy Analysis Results ⚠️ (In Development)
+
+1. **Current Limitations**: 
+   - Key confidentiality assertions not finding expected counterexamples
+   - Model constraints may be too restrictive for counterexample generation
+   - Under active development to resolve assertion checking issues
+
+2. **Theoretical Coverage**: Models cover SE compromise, supply chain attacks, and multi-vector scenarios
 
 ## 🛠️ Development
 
